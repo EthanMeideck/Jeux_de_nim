@@ -9,6 +9,7 @@ namespace Jeux
         public bool tour; // Aussi appelé drapeau ou flag. Permettra de continuer ou non le jeu
         public string choix = "";
         public bool tour_utilisateur = true;
+        public bool tour_robot = true;
         public string gagnant = "";
 
         public Jeux_nim()
@@ -26,11 +27,10 @@ namespace Jeux
 
         public void Affichage_batonnets()
         {
-            // Affichage de tous les batonnets
-            string affichage_batonnets = string.Concat(Enumerable.Repeat("# ", nombre_batonnets)); // Permet d'afficher x éléments
-            Console.Write(affichage_batonnets);
-            Console.Write("\n" + affichage_batonnets);
-            Console.Write("\n" + affichage_batonnets);
+        string affichage_batonnets = string.Concat(Enumerable.Repeat("# ", nombre_batonnets)); // Permet d'afficher x éléments
+        Console.Write(affichage_batonnets);
+        Console.Write("\n" + affichage_batonnets);
+        Console.Write("\n" + affichage_batonnets);
         }
 
         public void Choix_utilisateur()
@@ -81,32 +81,43 @@ namespace Jeux
             // Lancement du jeu
             while (tour)
             {
-                //Vérification du nombre de batonnets
+                //Vérification du nombre de batonnets & tour utilisateur
                 if (nombre_batonnets > 0)
                 {
                     Choix_utilisateur();
-                    // Vérification de la validité du choix & tour utilisateur
+                    // Vérification de la validité du choix
                     if (!(tour_utilisateur))
                     {
                         Console.WriteLine("Entrez un nombre valable entre 1 et 3.");
                     }
 
-                else if (nombre_batonnets <= 0)
+                 // Vérification du nombre de batonnets & tour du robot
+                    else if (nombre_batonnets <= 0)
                     {
                         tour = false;
                         Console.WriteLine("Fin 1");
+                        break;
                     }
-
+                    Console.WriteLine(nombre_batonnets);
                     // Vérification de la validité du choix & tour utilisateur
                     if (nombre_batonnets > 0)
                     {
-                        Choix_robot();
+                        try
+                        {
+                            Choix_robot();
+                        }
+                        catch (System.ArgumentOutOfRangeException)
+                        {
+                            Console.WriteLine("Fin 2");
+                            break;
+                        }
                     }
 
-                    else if (nombre_batonnets <= 0 && tour)
+                    else if (nombre_batonnets <= 0)
                     {
                         tour = false;
                         Console.WriteLine("Fin 2");
+                        break;
                     }
                 }
             }
