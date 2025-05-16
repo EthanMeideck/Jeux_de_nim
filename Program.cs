@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 
 namespace Jeux
 {
@@ -9,20 +8,20 @@ namespace Jeux
         public int nombre_batonnets;
         public bool tour; // Aussi appelé drapeau ou flag. Permettra de continuer ou non le jeu
         public string choix = "";
+        public bool tour_utilisateur = true;
+        public string gagnant = "";
 
         public Jeux_nim()
         {
             // Initialisation des paramètres du jeu
-            Setup();
-            Affichage_batonnets();
-            Choix_utilisateur();
-            Choix_robot();
+            Jeux();
         }
 
         public void Setup()
         {
             nombre_batonnets = 20;
             tour = true;
+            Affichage_batonnets();
         }
 
         public void Affichage_batonnets()
@@ -36,6 +35,7 @@ namespace Jeux
 
         public void Choix_utilisateur()
         {
+            tour_utilisateur = true;
             int choix_int;
             Console.Write("\nSéléctionner un nombre de bâtonnets : ");
             string choix = Console.ReadLine();
@@ -48,7 +48,7 @@ namespace Jeux
 
             catch (System.FormatException)
             {
-                Console.WriteLine("Entrez un nombre valable entre 1 et 3.");
+                tour_utilisateur = false;
                 return;
             }
 
@@ -68,10 +68,48 @@ namespace Jeux
         {
             // Génération d'un nombre aléatoire entre 1 et 3
             Random aleatoire = new Random();
-            int choix_robot = aleatoire.Next(1, 4);
+            int choix_robot = aleatoire.Next(1, 4); //4 non inclus
             nombre_batonnets -= choix_robot;
             Console.WriteLine("\n\nChoix du robot : \n");
             Affichage_batonnets();
+        }
+        public void Jeux()
+        {
+            // Appel des méthodes essentiel
+            Setup();
+            
+            // Lancement du jeu
+            while (tour)
+            {
+                //Vérification du nombre de batonnets
+                if (nombre_batonnets > 0)
+                {
+                    Choix_utilisateur();
+                    // Vérification de la validité du choix & tour utilisateur
+                    if (!(tour_utilisateur))
+                    {
+                        Console.WriteLine("Entrez un nombre valable entre 1 et 3.");
+                    }
+
+                else if (nombre_batonnets <= 0)
+                    {
+                        tour = false;
+                        Console.WriteLine("Fin 1");
+                    }
+
+                    // Vérification de la validité du choix & tour utilisateur
+                    if (nombre_batonnets > 0)
+                    {
+                        Choix_robot();
+                    }
+
+                    else if (nombre_batonnets <= 0 && tour)
+                    {
+                        tour = false;
+                        Console.WriteLine("Fin 2");
+                    }
+                }
+            }
         }
     }
     class Program
