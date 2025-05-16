@@ -15,7 +15,7 @@ namespace Jeux
             // Initialisation des paramètres du jeu
             Setup();
             Affichage_batonnets();
-            Choix_utilisateurs();
+            Choix_utilisateur();
         }
 
         public void Setup()
@@ -33,7 +33,7 @@ namespace Jeux
             Console.Write("\n" + affichage_batonnets);
         }
 
-        public void Choix_utilisateurs()
+        public void Choix_utilisateur()
         {
             int choix_int;
             Console.Write("\nSéléctionner un nombre de bâtonnets : ");
@@ -49,6 +49,19 @@ namespace Jeux
             {
                 Console.WriteLine("Entrez un nombre valable entre 1 et 3.");
                 return;
+            }
+
+            // Vérification du nombre choisi
+            if (choix_int < 1 || choix_int > 3)
+            {
+                Console.WriteLine("Entrez un nombre entre 1 et 3.");
+            }
+            else
+            {
+                nombre_batonnets -= choix_int;
+                Console.WriteLine("");
+                Affichage_batonnets();
+
             }
         }
     }
