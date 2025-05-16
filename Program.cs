@@ -16,6 +16,7 @@ namespace Jeux
             Setup();
             Affichage_batonnets();
             Choix_utilisateur();
+            Choix_robot();
         }
 
         public void Setup()
@@ -51,7 +52,7 @@ namespace Jeux
                 return;
             }
 
-            // Vérification du nombre choisi
+            // Vérification du nombre choisi et retrait du nombre de batonnet choisit
             if (choix_int < 1 || choix_int > 3)
             {
                 Console.WriteLine("Entrez un nombre entre 1 et 3.");
@@ -61,8 +62,16 @@ namespace Jeux
                 nombre_batonnets -= choix_int;
                 Console.WriteLine("");
                 Affichage_batonnets();
-
             }
+        }
+        public void Choix_robot()
+        {
+            // Génération d'un nombre aléatoire entre 1 et 3
+            Random aleatoire = new Random();
+            int choix_robot = aleatoire.Next(1, 4);
+            nombre_batonnets -= choix_robot;
+            Console.WriteLine("\n\nChoix du robot : \n");
+            Affichage_batonnets();
         }
     }
     class Program
