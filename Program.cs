@@ -10,7 +10,6 @@ namespace Jeux
         public string choix = "";
         public bool tour_utilisateur = true;
         public bool tour_robot = true;
-        public string gagnant = "";
 
         public Jeux_nim()
         {
@@ -113,6 +112,36 @@ namespace Jeux
                         Console.WriteLine("Vous avez gagné !");
                         break;
                     }
+                }
+            }
+            Rejouer();
+        }
+
+        public void Rejouer()
+        {
+            bool rejouer = true;
+
+            while (rejouer)
+            {
+                Console.WriteLine("Souhaitez-vous rejouer ? (o/n) : ");
+                string choix_rejouer = Console.ReadLine();
+                choix_rejouer = choix_rejouer.ToUpper();
+
+                if (choix_rejouer == "O")
+                {
+                    Console.WriteLine("Lancement d'une nouvelle partie !");
+                    Jeux();
+                    break;
+                }
+
+                else if (choix_rejouer == "N")
+                {
+                    Console.WriteLine("À bientôt !");
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Veuillez choisir une option valable !");
                 }
             }
         }
