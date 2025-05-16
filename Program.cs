@@ -95,28 +95,22 @@ namespace Jeux
                     else if (nombre_batonnets <= 0)
                     {
                         tour = false;
-                        Console.WriteLine("Fin 1");
+                        Console.WriteLine("Vous avez perdu...");
                         break;
                     }
-                    Console.WriteLine(nombre_batonnets);
+
                     // Vérification de la validité du choix & tour utilisateur
-                    if (nombre_batonnets > 0)
+                    // Bloquage du robot s'il reste 1 baton pour éviter les erreurs
+                    if (nombre_batonnets > 1)
                     {
-                        try
-                        {
-                            Choix_robot();
-                        }
-                        catch (System.ArgumentOutOfRangeException)
-                        {
-                            Console.WriteLine("Fin 2");
-                            break;
-                        }
+                     
+                     Choix_robot();
                     }
 
-                    else if (nombre_batonnets <= 0)
+                    else if (nombre_batonnets <= 1)
                     {
                         tour = false;
-                        Console.WriteLine("Fin 2");
+                        Console.WriteLine("Vous avez gagné !");
                         break;
                     }
                 }
