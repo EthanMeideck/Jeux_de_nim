@@ -9,6 +9,7 @@ namespace Jeux
         public bool tour; // Aussi appelé drapeau ou flag. Permettra de continuer ou non le jeu
         public string choix = "";
         public bool tour_utilisateur = true;
+        public bool erreur_utilisateur = true;
         public bool tour_robot = true;
 
         public Jeux_nim()
@@ -27,9 +28,9 @@ namespace Jeux
         public void Affichage_batonnets()
         {
         string affichage_batonnets = string.Concat(Enumerable.Repeat("# ", nombre_batonnets)); // Permet d'afficher x éléments
-        Console.Write(affichage_batonnets);
         Console.Write("\n" + affichage_batonnets);
         Console.Write("\n" + affichage_batonnets);
+        Console.Write("\n" + affichage_batonnets + "\n");
         }
 
         public void Choix_utilisateur()
@@ -42,12 +43,12 @@ namespace Jeux
             // Conversion du choix en nombre entier + gestion erreur de types
             try
             {
-                choix_int = int.Parse(choix);
+                choix_int = int.Parse(choix); // Conversion du choix de l'utilisateur
             }
 
-            catch (System.FormatException)
+            catch (System.FormatException) // Erreur si le choix est une chaine de caractère
             {
-                tour_utilisateur = false;
+                erreur_utilisateur = false;
                 return;
             }
 
@@ -55,11 +56,12 @@ namespace Jeux
             if (choix_int < 1 || choix_int > 3)
             {
                 Console.WriteLine("Entrez un nombre entre 1 et 3.");
+                tour_utilisateur = false;
             }
             else
             {
+                // Réduction du nombre de batonnets en fonction du choix de l'utilisateur
                 nombre_batonnets -= choix_int;
-                Console.WriteLine("");
                 Affichage_batonnets();
             }
         }
@@ -74,25 +76,31 @@ namespace Jeux
         }
         public void Jeux()
         {
-            // Appel des méthodes essentiel
+            // Appel de la méthode essentiel
             Setup();
             
             // Lancement du jeu
             while (tour)
             {
+                tour_robot = false;
                 //Vérification du nombre de batonnets & tour utilisateur
                 if (nombre_batonnets > 0)
                 {
                     Choix_utilisateur();
-                    // Vérification de la validité du choix
-                    if (!(tour_utilisateur))
+                    // Vérification de la validité du choix depuis la méthode "Choix_utilisateur"
+                    if (!(erreur_utilisateur))
                     {
                         Console.WriteLine("Entrez un nombre valable entre 1 et 3.");
+                    }
+                    else if (tour_utilisateur)
+                    {
+                        tour_robot = true;
                     }
 
                  // Vérification du nombre de batonnets & tour du robot
                     else if (nombre_batonnets <= 0)
                     {
+                        // Fermeture du jeu s'il n'y a plus de batonnets.
                         tour = false;
                         Console.WriteLine("Vous avez perdu...");
                         break;
@@ -100,7 +108,7 @@ namespace Jeux
 
                     // Vérification de la validité du choix & tour utilisateur
                     // Bloquage du robot s'il reste 1 baton pour éviter les erreurs
-                    if (nombre_batonnets > 1)
+                    if (nombre_batonnets > 1 && tour_robot)
                     {
                      
                      Choix_robot();
@@ -108,6 +116,7 @@ namespace Jeux
 
                     else if (nombre_batonnets <= 1)
                     {
+                        // Fermeture du jeu s'il n'y a plus de batonnets
                         tour = false;
                         Console.WriteLine("Vous avez gagné !");
                         break;
