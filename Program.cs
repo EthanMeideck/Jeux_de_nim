@@ -35,7 +35,8 @@ namespace Jeux
 
         public void Choix_utilisateur()
         {
-            tour_utilisateur = true;
+            // Initialisation des variables de tour
+            tour_utilisateur = erreur_utilisateur = true;
             int choix_int;
             Console.Write("\nSéléctionner un nombre de bâtonnets : ");
             string choix = Console.ReadLine();
