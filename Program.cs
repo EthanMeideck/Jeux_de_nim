@@ -8,6 +8,7 @@ namespace Jeux
         public int nombre_batonnets;
         public bool tour; // Aussi appelé drapeau ou flag. Permettra de continuer ou non le jeu
         public string choix = "";
+        public int choix_robot;
         public bool tour_utilisateur = true;
         public bool erreur_utilisateur = true;
         public bool tour_robot = true;
@@ -27,10 +28,11 @@ namespace Jeux
 
         public void Affichage_batonnets()
         {
-        string affichage_batonnets = string.Concat(Enumerable.Repeat("# ", nombre_batonnets)); // Permet d'afficher x éléments
-        Console.Write("\n" + affichage_batonnets);
-        Console.Write("\n" + affichage_batonnets);
-        Console.Write("\n" + affichage_batonnets + "\n");
+            string affichage_batonnets = string.Concat(Enumerable.Repeat("# ", nombre_batonnets)); // Permet d'afficher x éléments
+            Console.Write("\n" + affichage_batonnets);
+            Console.Write("\n" + affichage_batonnets);
+            Console.Write("\n" + affichage_batonnets + "\n");
+
         }
 
         public void Choix_utilisateur()
@@ -70,7 +72,25 @@ namespace Jeux
         {
             // Génération d'un nombre aléatoire entre 1 et 3
             Random aleatoire = new Random();
-            int choix_robot = aleatoire.Next(1, 4); //4 non inclus
+
+            if (nombre_batonnets > 3)
+            {
+                choix_robot = aleatoire.Next(1, 4); //4 non inclus
+            }
+            else if (nombre_batonnets == 3)
+            {
+                choix_robot = 2;
+            }
+            else if (nombre_batonnets == 2)
+            {
+                choix_robot = 1;
+            }
+            else
+            {
+                choix_robot = 1;
+            }
+
+
             nombre_batonnets -= choix_robot;
             Console.WriteLine("\n\nChoix du robot : \n");
             Affichage_batonnets();
@@ -79,7 +99,7 @@ namespace Jeux
         {
             // Appel de la méthode essentiel
             Setup();
-            
+
             // Lancement du jeu
             while (tour)
             {
@@ -98,7 +118,7 @@ namespace Jeux
                         tour_robot = true;
                     }
 
-                 // Vérification du nombre de batonnets & tour du robot
+                    // Vérification du nombre de batonnets & tour du robot
                     else if (nombre_batonnets <= 0)
                     {
                         // Fermeture du jeu s'il n'y a plus de batonnets.
@@ -106,22 +126,21 @@ namespace Jeux
                         Console.WriteLine("Vous avez perdu...");
                         break;
                     }
+                }
 
                     // Vérification de la validité du choix & tour utilisateur
-                    // Bloquage du robot s'il reste 1 baton pour éviter les erreurs
-                    if (nombre_batonnets > 1 && tour_robot)
-                    {
-                     
-                     Choix_robot();
-                    }
+                if (nombre_batonnets > 0 && tour_robot)
+                {
 
-                    else if (nombre_batonnets <= 1)
-                    {
-                        // Fermeture du jeu s'il n'y a plus de batonnets
-                        tour = false;
-                        Console.WriteLine("Vous avez gagné !");
-                        break;
-                    }
+                    Choix_robot();
+                }
+
+                else
+                {
+                    // Fermeture du jeu s'il n'y a plus de batonnets
+                    tour = false;
+                    Console.WriteLine("Vous avez gagné !");
+                    break;
                 }
             }
             Rejouer();
