@@ -1,5 +1,4 @@
 📖 Règles du jeux :
-
   1. Le jeux démarre avec 20 bâtonnets.
   2. Le jeu se joue uniquement contre un ordinateur.
   3. Chaque joueur peut prendre entre 1 et 3 bâtonnets inclus.
@@ -15,3 +14,6 @@
 ⚙️Technologie utilisé :
 - Langage : C#
 - Environnement : Console .NET
+
+📂 Organisation du code :
+- 
