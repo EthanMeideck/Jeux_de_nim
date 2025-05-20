@@ -15,10 +15,10 @@ namespace Jeux
 
         public Jeux_nim()
         {
-            // Initialisation des paramètres du jeu
             Jeux();
         }
 
+        // Initialisation des paramètres du jeu
         public void Setup()
         {
             nombre_batonnets = 20;
@@ -26,6 +26,7 @@ namespace Jeux
             Affichage_batonnets();
         }
 
+        // Affiche les bâtonnets dans la console
         public void Affichage_batonnets()
         {
             // Affichage des batonnets s'il reste au moins 1 batonnets
@@ -38,6 +39,7 @@ namespace Jeux
             }
         }
 
+        // Choix par l'utilisateur du nombre de bâtonnets à retirer
         public void Choix_utilisateur()
         {
             // Initialisation des variables de tour
@@ -58,7 +60,7 @@ namespace Jeux
                 return;
             }
 
-            // Vérification du nombre choisi et retrait du nombre de batonnet choisit
+            // Vérification du nombre choisi et retrait du nombre de batonnets choisit
             if (choix_int < 1 || choix_int > 3)
             {
                 Console.WriteLine("\nEntrez un nombre entre 1 et 3.\n");
@@ -79,6 +81,8 @@ namespace Jeux
             }
             Affichage_batonnets();
         }
+
+        // Choix par le robot du nombre de bâtonnets à retirer
         public void Choix_robot()
         {
             // Génération d'un nombre aléatoire entre 1 et 3
@@ -108,6 +112,8 @@ namespace Jeux
             Console.WriteLine("\nLe robot a pris " + choix_robot + " bâtonnets\n");
             Affichage_batonnets();
         }
+        
+        // Déroulement du jeu
         public void Jeux()
         {
             // Appel de la méthode essentiel
@@ -163,6 +169,7 @@ namespace Jeux
             }
         }
 
+        // Permet de rejouer une fois la partie terminé
         public void Rejouer()
         {
             bool rejouer = true;
@@ -192,6 +199,7 @@ namespace Jeux
             }
         }
     }
+    // Exécution du code
     class Program
     {
         static void Main(string[] args)
