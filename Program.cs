@@ -9,9 +9,9 @@ namespace Jeux
         public bool tour; // Aussi appelé drapeau ou flag. Permettra de continuer ou non le jeu
         public string choix = "";
         public int choix_robot;
-        public bool tour_utilisateur = true;
-        public bool erreur_utilisateur = true;
-        public bool tour_robot = true;
+        public bool tour_utilisateur = true; // Permet à l'utilisateur de jouer
+        public bool erreur_utilisateur = true; // Empêche le robot de jouer en cas d'erreur de l'utilisateur
+        public bool tour_robot = false; // Permet au robot de jouer
 
         public Jeux_nim()
         {
@@ -88,7 +88,7 @@ namespace Jeux
             {
                 choix_robot = aleatoire.Next(1, 4); //4 non inclus
             }
-            
+
             // Choix d'un nombre pour pas que le robot perde tout seul
             else if (nombre_batonnets == 3)
             {
@@ -173,14 +173,14 @@ namespace Jeux
                 string choix_rejouer = Console.ReadLine();
                 choix_rejouer = choix_rejouer.ToUpper();
 
-                if (choix_rejouer == "O")
+                if (choix_rejouer == "O" || choix_rejouer.ToUpper() == "OUI")
                 {
-                    Console.WriteLine("\nLancement d'une nouvelle partie !");
+                    Console.WriteLine("\nLancement d'une nouvelle partie !\n");
                     Jeux();
                     break;
                 }
 
-                else if (choix_rejouer == "N")
+                else if (choix_rejouer == "N" || choix_rejouer.ToUpper() == "NON")
                 {
                     Console.WriteLine("À bientôt !");
                     break;
