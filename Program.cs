@@ -117,33 +117,36 @@ namespace Jeux
                     {
                         tour_robot = true;
                     }
-
-                    // Vérification du nombre de batonnets & tour du robot
-                    else if (nombre_batonnets <= 0)
-                    {
-                        // Fermeture du jeu s'il n'y a plus de batonnets.
-                        tour = false;
-                        Console.WriteLine("Vous avez perdu...");
-                        break;
-                    }
+                }
+                // Vérification du nombre de batonnets pour le tour du robot
+                else if (nombre_batonnets <= 0)
+                {
+                    // Fermeture du jeu s'il n'y a plus de batonnets.
+                    tour = false;
+                    Console.WriteLine("Vous avez gagné !");
+                    break;
                 }
 
-                    // Vérification de la validité du choix & tour utilisateur
+                // Vérification du nombre de batonnets pour le tour de l'utilisateur
                 if (nombre_batonnets > 0 && tour_robot)
                 {
 
                     Choix_robot();
                 }
 
-                else
+                else if (nombre_batonnets <= 0)
                 {
                     // Fermeture du jeu s'il n'y a plus de batonnets
                     tour = false;
-                    Console.WriteLine("Vous avez gagné !");
+                    Console.WriteLine("Vous avez perdu...");
                     break;
                 }
             }
-            Rejouer();
+            // Option rejouer si le jeu est terminé
+            if (!(tour))
+            {
+                Rejouer();
+            }
         }
 
         public void Rejouer()
