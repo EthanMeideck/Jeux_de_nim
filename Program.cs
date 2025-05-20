@@ -32,7 +32,7 @@ namespace Jeux
             if (nombre_batonnets >= 1)
             {
                 string affichage_batonnets = string.Concat(Enumerable.Repeat("# ", nombre_batonnets)); // Permet d'afficher x éléments
-                Console.Write("\n" + affichage_batonnets);
+                Console.Write(affichage_batonnets);
                 Console.Write("\n" + affichage_batonnets);
                 Console.Write("\n" + affichage_batonnets + "\n");
             }
@@ -68,6 +68,7 @@ namespace Jeux
             {
                 // Réduction du nombre de batonnets en fonction du choix de l'utilisateur
                 nombre_batonnets -= choix_int;
+                Console.WriteLine("\nVous avez pris " + choix_int + " bâtonnets.\n");
                 Affichage_batonnets();
             }
         }
@@ -96,7 +97,8 @@ namespace Jeux
             }
 
             nombre_batonnets -= choix_robot;
-            Console.WriteLine("\n\nChoix du robot : \n");
+            Console.WriteLine("\nChoix du robot : ");
+            Console.WriteLine("\nLe robot a pris " + choix_robot + " bâtonnets\n");
             Affichage_batonnets();
         }
         public void Jeux()
