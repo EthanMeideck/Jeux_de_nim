@@ -1,4 +1,4 @@
-**🕹️ Jeux de nim**
+## 🕹️ Jeux de nim
 
 __**📃 Description**__
 - Projet réalisé en 1ère année de BTS SIO et uniquement en cours. Ce projet est de type portfolio et à comme but de nous faire apprendre la programmation en C# de façon ludique.
@@ -17,7 +17,7 @@ __**📖 Règles du jeux :**__
   
   Bon jeu 😁
 
-🛠️ Caractéristique technique :
+## 🛠️ Caractéristique technique :
 
 __**⚙️ Technologie utilisé :**__
 - Langage : C#
