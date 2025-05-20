@@ -180,14 +180,14 @@ namespace Jeux
                 string choix_rejouer = Console.ReadLine();
                 choix_rejouer = choix_rejouer.ToUpper();
 
-                if (choix_rejouer == "O" || choix_rejouer.ToUpper() == "OUI")
+                if (choix_rejouer == "O" || choix_rejouer == "OUI")
                 {
                     Console.WriteLine("\nLancement d'une nouvelle partie !\n");
                     Jeux();
                     break;
                 }
 
-                else if (choix_rejouer == "N" || choix_rejouer.ToUpper() == "NON")
+                else if (choix_rejouer == "N" || choix_rejouer == "NON")
                 {
                     Console.WriteLine("À bientôt !");
                     break;
@@ -206,6 +206,5 @@ namespace Jeux
         {
             Jeux_nim t = new Jeux_nim();
         }
-
     }
 }
