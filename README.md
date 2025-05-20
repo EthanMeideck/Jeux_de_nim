@@ -17,7 +17,7 @@ __**📖 Règles du jeux :**__
   
   Bon jeu 😁
 
-🛠️ ####Caractéristique technique :
+🛠️ Caractéristique technique :
 
 __**⚙️ Technologie utilisé :**__
 - Langage : C#
