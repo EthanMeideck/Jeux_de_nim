@@ -28,10 +28,18 @@ namespace Jeux
 
         public void Affichage_batonnets()
         {
-            string affichage_batonnets = string.Concat(Enumerable.Repeat("# ", nombre_batonnets)); // Permet d'afficher x éléments
-            Console.Write("\n" + affichage_batonnets);
-            Console.Write("\n" + affichage_batonnets);
-            Console.Write("\n" + affichage_batonnets + "\n");
+            // Affichage des batonnets s'il reste au moins 1 batonnets
+            if (nombre_batonnets >= 1)
+            {
+                string affichage_batonnets = string.Concat(Enumerable.Repeat("# ", nombre_batonnets)); // Permet d'afficher x éléments
+                Console.Write("\n" + affichage_batonnets);
+                Console.Write("\n" + affichage_batonnets);
+                Console.Write("\n" + affichage_batonnets + "\n");
+            }
+            else
+            {
+                return;
+            }
 
         }
 
@@ -77,6 +85,8 @@ namespace Jeux
             {
                 choix_robot = aleatoire.Next(1, 4); //4 non inclus
             }
+            
+            // Choix d'un nombre pour pas que le robot perde tout seul
             else if (nombre_batonnets == 3)
             {
                 choix_robot = 2;
@@ -89,7 +99,6 @@ namespace Jeux
             {
                 choix_robot = 1;
             }
-
 
             nombre_batonnets -= choix_robot;
             Console.WriteLine("\n\nChoix du robot : \n");
