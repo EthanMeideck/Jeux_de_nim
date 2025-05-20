@@ -36,6 +36,7 @@ __**🎮 Lancement du jeu**__
 1. Ouvrir le répertoire du projet dans une console.
 2. Une fois dans le répertoire du projet, effectuer la commande **dotnet run**
 
+## 🎓 Compléments :
 __**🔎 Comment je m'y suis pris ?**__
 1. J'ai commencé par réalisé les **algorigrammes de chaque fonctionnalité** sur *Draw.io*
 2. J'ai ensuite commencé à développer les fonctionnalité de bases tels que l'affichage des bâtonnets, les choix de l'utilisateur et du robot... Celà sans gestion d'erreur.
