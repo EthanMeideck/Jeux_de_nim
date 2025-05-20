@@ -36,11 +36,6 @@ namespace Jeux
                 Console.Write("\n" + affichage_batonnets);
                 Console.Write("\n" + affichage_batonnets + "\n");
             }
-            else
-            {
-                return;
-            }
-
         }
 
         public void Choix_utilisateur()
