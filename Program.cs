@@ -61,16 +61,23 @@ namespace Jeux
             // Vérification du nombre choisi et retrait du nombre de batonnet choisit
             if (choix_int < 1 || choix_int > 3)
             {
-                Console.WriteLine("Entrez un nombre entre 1 et 3.");
+                Console.WriteLine("\nEntrez un nombre entre 1 et 3.\n");
                 tour_utilisateur = false;
             }
+
+            else if (choix_int > nombre_batonnets)
+            {
+                Console.WriteLine("\nVous ne pouvez pas prendre plus de bâtonnets qu'il en reste !\n");
+                tour_utilisateur = false;
+            }
+
             else
             {
                 // Réduction du nombre de batonnets en fonction du choix de l'utilisateur
                 nombre_batonnets -= choix_int;
                 Console.WriteLine("\nVous avez pris " + choix_int + " bâtonnets.\n");
-                Affichage_batonnets();
             }
+            Affichage_batonnets();
         }
         public void Choix_robot()
         {
@@ -117,7 +124,8 @@ namespace Jeux
                     // Vérification de la validité du choix depuis la méthode "Choix_utilisateur"
                     if (!(erreur_utilisateur))
                     {
-                        Console.WriteLine("Entrez un nombre valable entre 1 et 3.");
+                        Console.WriteLine("\nEntrez un nombre valable entre 1 et 3.\n");
+                        Affichage_batonnets();
                     }
                     else if (tour_utilisateur)
                     {
@@ -161,13 +169,13 @@ namespace Jeux
 
             while (rejouer)
             {
-                Console.WriteLine("Souhaitez-vous rejouer ? (o/n) : ");
+                Console.WriteLine("\nSouhaitez-vous rejouer ? (o/n) : ");
                 string choix_rejouer = Console.ReadLine();
                 choix_rejouer = choix_rejouer.ToUpper();
 
                 if (choix_rejouer == "O")
                 {
-                    Console.WriteLine("Lancement d'une nouvelle partie !");
+                    Console.WriteLine("\nLancement d'une nouvelle partie !");
                     Jeux();
                     break;
                 }
